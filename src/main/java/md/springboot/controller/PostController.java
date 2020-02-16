@@ -1,18 +1,21 @@
 package md.springboot.controller;
 
 import md.springboot.entity.Post;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/post")
 public interface PostController {
 
     @GetMapping
-    Flux<Post> retrieve();
+    List<Post> retrieve();
 
     @GetMapping("/{id}")
-    Mono<Post> retrieveById(@PathVariable String id);
+    Post retrieveById(@PathVariable String id);
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    Post create(@RequestBody Post post);
 }

@@ -5,8 +5,8 @@ import md.springboot.controller.PostController;
 import md.springboot.entity.Post;
 import md.springboot.service.PostService;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,14 +15,17 @@ public class PostControllerImpl implements PostController {
     private final PostService service;
 
     @Override
-    public Flux<Post> retrieve() {
+    public List<Post> retrieve() {
         return service.retrieve();
     }
 
     @Override
-    public Mono<Post> retrieveById(String id) {
-        return service.retrieveById(id);
+    public Post retrieveById(String id) {
+        return service.retrieveById(id).orElse(null);
     }
 
-
+    @Override
+    public Post create(Post post) {
+        return service.create(post);
+    }
 }

@@ -1,12 +1,15 @@
 package md.springboot.service;
 
 import md.springboot.entity.Post;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface PostService {
 
-    Flux<Post> retrieve();
+    List<Post> retrieve();
 
-    Mono<Post> retrieveById(String id);
+    Optional<Post> retrieveById(String id);
+
+    Post create(Post post);
 }

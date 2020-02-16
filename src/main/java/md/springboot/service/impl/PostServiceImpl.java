@@ -5,8 +5,9 @@ import md.springboot.entity.Post;
 import md.springboot.repository.PostRepository;
 import md.springboot.service.PostService;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,12 +16,17 @@ public class PostServiceImpl implements PostService {
     private final PostRepository repository;
 
     @Override
-    public Flux<Post> retrieve() {
+    public List<Post> retrieve() {
         return repository.findAll();
     }
 
     @Override
-    public Mono<Post> retrieveById(String id) {
+    public Optional<Post> retrieveById(String id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public Post create(Post post) {
+        return repository.save(post);
     }
 }
