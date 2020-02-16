@@ -23,4 +23,9 @@ public class PostServiceImpl implements PostService {
     public Mono<Post> retrieveById(String id) {
         return repository.findById(id);
     }
+
+    @Override
+    public Mono<Post> create(Mono<Post> post) {
+        return repository.saveAll(post).next();
+    }
 }

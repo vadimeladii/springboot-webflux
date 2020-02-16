@@ -9,4 +9,6 @@ public interface PostService {
     Flux<Post> retrieve();
 
     Mono<Post> retrieveById(String id);
+
+    Mono<Post> create(Mono<Post> post);
 }

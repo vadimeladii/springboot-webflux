@@ -24,5 +24,8 @@ public class PostControllerImpl implements PostController {
         return service.retrieveById(id);
     }
 
-
+    @Override
+    public Mono<Post> create(Mono<Post> post) {
+        return service.create(post);
+    }
 }
